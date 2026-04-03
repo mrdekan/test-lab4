@@ -34,6 +34,9 @@ jobs:
       - name: Run integration tests
         env:
           PYTHONPATH: .
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
+          AWS_DEFAULT_REGION: us-east-1
         run: |
           pytest --maxfail=1 --disable-warnings -v
           coverage run -m pytest && coverage report -m
