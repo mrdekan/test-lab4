@@ -32,6 +32,8 @@ jobs:
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
           exit "$exitcode"
       - name: Run integration tests
+        env:
+          PYTHONPATH: .
         run: |
           pytest --maxfail=1 --disable-warnings -v
           coverage run -m pytest && coverage report -m
