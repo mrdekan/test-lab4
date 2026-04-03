@@ -23,11 +23,11 @@ jobs:
       - name: Wait for LocalStack to be ready
         run: |
             echo "Waiting for LocalStack startup..."
-            until curl -s http://localhost:4566/_localstack/health; do
-              echo "Waiting..."
-              sleep 2
-            done
+            timeout 60 bash -c 'until curl -s http://localhost:4566/_localstack/health; do echo "Waiting..."; sleep 2; done'
             echo "LocalStack is ready!"
+      - name: Print LocalStack logs on failure
+        if: failure()
+        run: docker logs integration_aws_test
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
