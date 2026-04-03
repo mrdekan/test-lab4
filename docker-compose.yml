@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: integration_aws_test
+    ports:
+      - "4566:4566" # LocalStack Gateway
+    environment:
+      - SERVICES=dynamodb, sqs
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LOCALSTACK_AUTH_TOKEN=ignore
+      - LOCALSTACK_ACKNOWLEDGE_ACCOUNT_REQUIREMENT=1
+    volumes:
+      - "./.localstack:/var/lib/localstack"
