@@ -73,6 +73,10 @@ class ShoppingCart:
         """Finalize order: decrease stock and return product identifiers."""
         product_ids = []
 
+        # Safeguard: If products is uninitialized or empty, safely return
+        if not getattr(self, 'products', None):
+            return product_ids
+
         for product, count in self.products.items():
             product.buy(count)
             product_ids.append(str(product))
