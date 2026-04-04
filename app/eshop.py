@@ -6,6 +6,7 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Dict
+from typing import Optional
 
 from services import ShippingService
 
@@ -92,7 +93,7 @@ class Order:
     def place_order(
         self,
         shipping_type: str,
-        due_date: datetime | None = None,
+        due_date: Optional[datetime] = None,
     ):
         """Place order and create shipment."""
         if due_date is None:
