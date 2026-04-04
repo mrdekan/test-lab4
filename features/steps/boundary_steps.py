@@ -62,12 +62,16 @@ def remove_item_by_name(context, name):
 def verify_empty_basket(context):
     assert len(context.basket.products) == 0
 
+
 @when('I finalize the checkout')
 def process_checkout(context):
     try:
         dummy_shipping = MagicMock()
         new_order = Order(context.basket, dummy_shipping)
-        new_order.place_order()
+
+        # Pass a dummy string here to satisfy the shipping_type argument
+        new_order.place_order("standard")
+
         context.system_crashed = False
         context.crash_error = None
     except Exception as e:
