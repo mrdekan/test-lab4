@@ -69,7 +69,7 @@ class ShoppingCart:
         if product in self.products:
             del self.products[product]
 
-    def submit_cart_order(self) -> list[str]:
+    def submit_cart_order(self) -> List[str]:
         """Finalize order: decrease stock and return product identifiers."""
         product_ids = []
 
