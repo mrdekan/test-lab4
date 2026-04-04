@@ -1,5 +1,5 @@
 from behave import given, when, then
-from eshop import Product, ShoppingCart, Order
+from app.eshop import Product, ShoppingCart, Order
 
 @given('An item named "{name}" is created with price {price:d} and {stock:d} in stock')
 def build_custom_item(context, name, price, stock):

@@ -1,5 +1,5 @@
 from behave import given, when, then
-from eshop import Product
+from app.eshop import Product
 
 @given('An item called "{name}" is set with a stock level of {availability}')
 def define_item_stock(context, name, availability):
