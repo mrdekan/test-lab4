@@ -67,12 +67,15 @@ def process_checkout(context):
         new_order = Order(context.basket)
         new_order.place_order()
         context.system_crashed = False
-    except Exception:
+        context.crash_error = None
+    except Exception as e:
         context.system_crashed = True
+        context.crash_error = e
 
 @then('The application should not crash')
 def verify_no_crash(context):
-    assert context.system_crashed is False
+    # This will now print the exact error message if the assertion fails
+    assert context.system_crashed is False, f"App crashed with error: {repr(context.crash_error)}"
 
 @then('The item is successfully placed in the basket')
 def verify_successful_addition(context):
