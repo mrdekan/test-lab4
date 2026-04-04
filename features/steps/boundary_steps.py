@@ -1,5 +1,6 @@
 from behave import given, when, then
 from app.eshop import Product, ShoppingCart, Order
+from unittest.mock import MagicMock
 
 @given('An item named "{name}" is created with price {price:d} and {stock:d} in stock')
 def build_custom_item(context, name, price, stock):
@@ -64,7 +65,8 @@ def verify_empty_basket(context):
 @when('I finalize the checkout')
 def process_checkout(context):
     try:
-        new_order = Order(context.basket)
+        dummy_shipping = MagicMock()
+        new_order = Order(context.basket, dummy_shipping)
         new_order.place_order()
         context.system_crashed = False
         context.crash_error = None
