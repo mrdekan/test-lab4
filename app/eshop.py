@@ -5,8 +5,7 @@ Simple e-shop domain models: Product, ShoppingCart, Order, Shipment.
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
-from typing import Dict
-from typing import Optional
+from typing import Dict, Optional, List
 
 from services import ShippingService
 
